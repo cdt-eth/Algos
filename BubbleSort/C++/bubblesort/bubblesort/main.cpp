@@ -6,6 +6,7 @@
 //
 
 #include <iostream>
+#include <chrono>
 using namespace std;
 
 void printArr(int arr[]);
@@ -17,20 +18,54 @@ int arr[7] = {7, 3, 1, 4, 6, 2, 3};
 int len = sizeof(arr)/sizeof(arr[0]);
 
 int main() {
+    //    Print Original Array
     cout << "~~~ starting array ~~~" << endl;
-    cout << "arr = "; printArr(arr); cout<< endl << endl;
+    cout << "arr = ";
+    printArr(arr);
+    cout<< endl << endl;
     
+    //    Measure Bubblesort Runtime
+    auto start = chrono::high_resolution_clock::now();
     bubbleSort(arr);
+    auto diff = chrono::high_resolution_clock::now() - start;
+    auto t1 = chrono::duration_cast<chrono::nanoseconds>(diff);
+    cout << "time = " << t1.count() << "ns" << endl;
+
+    //    Print Bubblesort Runtime
     cout << "~~~ bubblesort regular ~~~" << endl;
-    cout << "arr = "; printArr(arr); cout<< endl << endl;
+    cout << "arr = ";
+    printArr(arr);
+    cout<< endl << endl;
     
+    
+    
+    //    Measure Bubblesort Fast Runtime
+    auto start1 = chrono::high_resolution_clock::now();
     bubbleFast(arr);
-    cout << "~~~ bubblesort fast ~~~" << endl;
-    cout << "arr = "; printArr(arr); cout<< endl << endl;
+    auto diff1 = chrono::high_resolution_clock::now() - start1;
+    auto t2 = chrono::duration_cast<chrono::nanoseconds>(diff1);
+    cout << "time = " << t2.count() << "ns" << endl;
     
+    //    Print Bubblesort Fast Runtime
+    cout << "~~~ bubblesort fast ~~~" << endl;
+    cout << "arr = ";
+    printArr(arr);
+    cout<< endl << endl;
+    
+    
+    
+    //    Measure Bubblesort Faster Runtime
+    auto start2 = chrono::high_resolution_clock::now();
     bubbleFaster(arr);
+    auto diff2 = chrono::high_resolution_clock::now() - start2;
+    auto t3 = chrono::duration_cast<chrono::nanoseconds>(diff2);
+    cout << "time = " << t3.count() << "ns" << endl;
+    
+    //    Print Bubblesort Faster Runtime
     cout << "~~~ bubblesort faster ~~~" << endl;
-    cout << "arr = "; printArr(arr); cout<< endl << endl;
+    cout << "arr = ";
+    printArr(arr);
+    cout<< endl << endl;
     
     cout << endl;
     return 0;
